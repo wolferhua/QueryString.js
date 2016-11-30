@@ -25,7 +25,7 @@
         }
         if (ret == null) {
             //复杂数据
-            patten = new RegExp('(^|?|&)' + key + '((\\[([^\\]]*)\\])*)=([^=&]*)', 'g');
+            patten = new RegExp('(^|\?|&)' + key + '((\\[([^\\]]*)\\])*)=([^=&]*)', 'g');
             i = 0;
             var iList = {};
             while ((result = patten.exec(query)) != null) {
