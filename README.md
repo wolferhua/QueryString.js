@@ -11,3 +11,10 @@ var qs = new QueryString(queryString);
 alert(qs.get('day'));//获取day
 alert(qs.get('test.1'));//获取test[1]
 ```
+
+
+``` 
+var qs = new QueryString(window.location.query);
+alert(qs.get('day'));//获取day
+alert(qs.get('test.1'));//获取test[1]
+```
