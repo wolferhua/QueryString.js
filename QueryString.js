@@ -68,6 +68,7 @@
     function qsAll(query) {
         var GET = {};
         if (query) {
+            console.log(query);
             query = query.replace('&amp;', '&');
             var result;
             var patten = new RegExp('(^|&)([^\\[=]*)(=|\\[)', 'g'); //获取所有key
