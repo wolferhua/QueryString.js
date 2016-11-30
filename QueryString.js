@@ -6,7 +6,6 @@
         //字符串
         the.qs = queryString + '';
         //解析后得到的数据
-        the.data = {};
         the.data = qsAll();
     }
 
