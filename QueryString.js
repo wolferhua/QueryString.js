@@ -25,7 +25,7 @@
         }
         if (ret == null) {
             //复杂数据
-            patten = new RegExp('(^|\?|&)' + key + '((\\[([^\\]]*)\\])*)=([^=&]*)', 'g');
+            patten = new RegExp('(^|\\?|&)' + key + '((\\[([^\\]]*)\\])*)=([^=&]*)', 'g');
             i = 0;
             var iList = {};
             while ((result = patten.exec(query)) != null) {
@@ -71,7 +71,7 @@
             console.log(query);
             query = query.replace('&amp;', '&');
             var result;
-            var patten = new RegExp('(^|&)([^\\[=]*)(=|\\[)', 'g'); //获取所有key
+            var patten = new RegExp('(^|\\?|&)([^\\[=]*)(=|\\[)', 'g'); //获取所有key
             while ((result = patten.exec(query)) != null) {
                 GET[result[2]] = undefined;
             }
