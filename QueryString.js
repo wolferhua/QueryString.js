@@ -85,5 +85,23 @@
 
     var QS = w.QS = w.QueryString = QueryString;
     QS.pt = QS.prototype;
+
+    QS.pt.get = function (key) {
+        key = key + '';
+        var keys = key.split('.'), ret = this.data;
+        if (ret && keys.length > 0) {
+            var keyLen = keys.length, iKey = '';
+            for (var i = 0; i < keyLen; i++) {
+                iKey = keys[i];
+                if (ret[iKey] != undefined) {
+                    ret = ret[iKey];
+                } else {
+                    ret = null;
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
 })(window, document, jQuery);
 
