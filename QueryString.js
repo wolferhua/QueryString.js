@@ -16,6 +16,7 @@
      * @returns {*}
      */
     function qsGet(query, key) {
+        //尝试简单方法获取值
         var patten = new RegExp('(^|&)' + key + '=([^=&]*)', 'g');
         var result = null,
             ret = null,
@@ -29,7 +30,6 @@
             i = 0;
             var iList = {};
             while ((result = patten.exec(query)) != null) {
-
                 var val = result[result.length - 1], exp = result[2], k = 0;
                 var expList = exp.match(/\[[^\]\[]*\]/g), expLen = expList == null ? 0 : expList.length, expStr = '', eVal = val, _eval;
                 for (var j = expLen - 1; j >= 0; j--) {
@@ -67,14 +67,17 @@
      */
     function qsAll(query) {
         var GET = {};
+        //判断queryString 状态
         if (query) {
-            console.log(query);
+            //修复异常的&amp;
             query = query.replace('&amp;', '&');
             var result;
-            var patten = new RegExp('(^|\\?|&)([^\\?\\[=]*)(=|\\[)', 'g'); //获取所有key
+            //获取所有key
+            var patten = new RegExp('(^|\\?|&)([^\\?\\[=]*)(=|\\[)', 'g');
             while ((result = patten.exec(query)) != null) {
                 GET[result[2]] = undefined;
             }
+            //获取所有key 的值
             $.each(GET, function (key, val) {
                 GET[key] = qsGet(query, key);
             });
@@ -86,6 +89,11 @@
     var QS = w.QS = w.QueryString = QueryString;
     QS.pt = QS.prototype;
 
+    /**
+     * 获取数据
+     * @param key
+     * @returns {{}|*|string|Object[]|CanvasPixelArray}
+     */
     QS.pt.get = function (key) {
         key = key + '';
         var keys = key.split('.'), ret = this.data;
@@ -102,6 +110,7 @@
             }
         }
         return ret;
-    }
+    };
+
 })(window, document, jQuery);
 
